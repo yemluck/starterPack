@@ -8,15 +8,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // source in your routes
-const statesRouter = require('./routes/states.router')
+const starterRouter = require('./routes/starter.router')
 
 /** ----------MIDDLEWARE---------------- */
 app.use(bodyParser.json()); // needed for axios request
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static('build')); // for static files
 
 
 /** ----------------EXPRESS ROUTES -------------- */
-app.use('/states', statesRouter);
+app.use('/starter', starterRouter);
 
 
 
@@ -32,6 +33,7 @@ app.use('/states', statesRouter);
 
 
 // START SERVER
-app.listen(PORT, () => {console.log('Express Server is Up');
-})
+app.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
+});
 
